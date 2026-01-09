@@ -51,16 +51,6 @@
 (setq dired-listing-switches "-alh")
 (setq dired-mouse-drag-files t)
 
-;;; helm
-(rc/require 'helm)
-
-(setq helm-ff-transformer-show-only-basename nil)
-
-(global-set-key (kbd "C-c h t") 'helm-cmd-t)
-(global-set-key (kbd "C-c h f") 'helm-find)
-(global-set-key (kbd "C-c h a") 'helm-org-agenda-files-headings)
-(global-set-key (kbd "C-c h r") 'helm-recentf)
-
 ;;; Move Text
 (rc/require 'move-text)
 (global-set-key (kbd "M-p") 'move-text-up)
