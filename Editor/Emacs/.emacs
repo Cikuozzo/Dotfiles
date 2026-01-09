@@ -4,6 +4,14 @@
 (load "~/.emacs.rc/rc.el")
 (setq make-backup-files nil) ; stop creating ~ files
 (setq initial-scratch-message nil)
+(setq inhibit-startup-screen t)
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+(column-number-mode 0)
+(fringe-mode 0)
+(tooltip-mode 0)
+(global-display-line-numbers-mode 0)
+(size-indication-mode 1)
 
 (rc/require-theme 'gruber-darker)
 
@@ -20,6 +28,7 @@
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;;;magit
+(rc/require 'cl-lib)
 (rc/require 'magit)
 (setq magit-auto-revert-mode nil)
 (global-set-key (kbd "C-c m s") 'magit-status)
@@ -41,6 +50,16 @@
 (setq-default dired-dwim-target t)
 (setq dired-listing-switches "-alh")
 (setq dired-mouse-drag-files t)
+
+;;; helm
+(rc/require 'helm)
+
+(setq helm-ff-transformer-show-only-basename nil)
+
+(global-set-key (kbd "C-c h t") 'helm-cmd-t)
+(global-set-key (kbd "C-c h f") 'helm-find)
+(global-set-key (kbd "C-c h a") 'helm-org-agenda-files-headings)
+(global-set-key (kbd "C-c h r") 'helm-recentf)
 
 ;;; Move Text
 (rc/require 'move-text)
