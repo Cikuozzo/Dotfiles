@@ -2,7 +2,7 @@
 (package-initialize)
 
 (when (eq system-type 'windows-nt)
-  (setq default-directory "C:/Users/TuoNomeUtente/"))
+  (setq default-directory "C:/Users/username/"))
 
 (load "~/.emacs.rc/rc.el")
 (setq make-backup-files nil) ; stop creating ~ files
