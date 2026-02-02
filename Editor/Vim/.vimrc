@@ -5,8 +5,6 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
 call plug#end()
 
 set number              
@@ -21,6 +19,8 @@ set ignorecase
 set smartcase
 set showtabline=0
 set cursorline
+set path+=**
+set wildmenu
 
 "Gruvbox
 colorscheme gruvbox
@@ -34,8 +34,13 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline_powerline_fonts = 1
 
-"Explore
+"netrw
 nnoremap <leader>ff :Explore<CR>
+let g:netrw_banner=0
+let g:netrw_altv=1
+leg g:netrw_liststyle=3
+let g:netrw_browse_split=4
+
 
 "Fugitive
 nnoremap <leader>gs :Gstatus<CR>
@@ -45,8 +50,3 @@ nnoremap <leader>gl :Glog<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gb :Gblame<CR>
 
-"Treesitter
-syntax enable
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-set nofoldenable
