@@ -38,7 +38,7 @@ let g:airline_powerline_fonts = 1
 nnoremap <leader>ff :Explore<CR>
 let g:netrw_banner=0
 let g:netrw_altv=1
-leg g:netrw_liststyle=3
+let g:netrw_liststyle=3
 let g:netrw_browse_split=4
 
 
