@@ -1,5 +1,4 @@
 call plug#begin()
-
 Plug 'tpope/vim-sensible'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
