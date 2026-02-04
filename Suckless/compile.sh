@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~/Dotfiles/Suckless/dwm
+cd dwm
 sudo make clean install
 cd ..
 cd dmenu
