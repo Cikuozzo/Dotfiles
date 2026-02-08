@@ -31,8 +31,6 @@
         set cursorline
         set path+=**
         set wildmenu
-
-        " Clipboard di sistema (usa + e * registers)
         set clipboard=unnamedplus
 
         " Gruvbox theme
@@ -40,7 +38,7 @@
         set background=dark
         syntax enable
 
-        " Vim-Airline (configurazione dopo il caricamento dei plugin)
+        " Vim-Airline
         let g:airline#extensions#tabline#enabled = 1
         let g:airline#extensions#tabline#formatter = 'default'
         let g:airline_powerline_fonts = 1
