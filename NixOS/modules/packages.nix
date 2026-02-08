@@ -32,5 +32,6 @@
     pavucontrol
     kdePackages.kdenlive
     unzip
+    btop
   ];
 }
