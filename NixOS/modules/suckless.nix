@@ -9,9 +9,6 @@ let
       rev = "HEAD";
       sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
     };
-    # Oppure usa una directory locale:
-    # src = /path/to/your/dwm;
-    
     # Aggiungi patch qui se necessario:
     # patches = [
     #   ./dwm-alpha.diff
@@ -26,8 +23,6 @@ let
       rev = "HEAD";
       sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
     };
-    # Oppure usa una directory locale:
-    # src = /path/to/your/st;
     
     # patches = [
     #   ./st-scrollback.diff
@@ -41,9 +36,6 @@ let
       rev = "HEAD";
       sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
     };
-    # Oppure usa una directory locale:
-    # src = /path/to/your/dmenu;
-    
     # patches = [
     #   ./dmenu-center.diff
     # ];
@@ -56,8 +48,6 @@ let
       rev = "HEAD";
       sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
     };
-    # Oppure usa una directory locale:
-    # src = /path/to/your/slstatus;
   });
 
 in
