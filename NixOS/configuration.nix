@@ -14,6 +14,7 @@
         ./modules/xorg.nix
 	./modules/nvidia.nix
 	./modules/suckless.nix
+	./modules/monitor.nix
     ];
 
   # Use latest kernel.

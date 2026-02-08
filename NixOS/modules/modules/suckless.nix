@@ -34,4 +34,15 @@ in
     enable = true;
     package = mydwm;
   };
+
+  systemd.user.services.slstatus = {
+    description = "slstatus - status monitor for dwm";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${myslstatus}/bin/slstatus";
+      Restart = "on-failure";
+      RestartSec = 3;
+    };
+  };
 }

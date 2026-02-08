@@ -22,5 +22,7 @@
     papirus-icon-theme
     noto-fonts-cjk-serif
     noto-fonts-cjk-sans
+    pavucontrol
+    arandr
   ];
 }

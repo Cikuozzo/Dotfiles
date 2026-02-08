@@ -13,6 +13,7 @@ environment.systemPackages = with pkgs.xorg; [
 	libX11.dev
 	libXft.dev
 	libXinerama.dev
+	xrandr
 
 ];
 
