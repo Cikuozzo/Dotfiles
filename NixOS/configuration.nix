@@ -15,6 +15,7 @@
 	./modules/nvidia.nix
 	./modules/suckless.nix
 	./modules/monitor.nix
+	./modules/neovim.nix
     ];
 
   # Use latest kernel.

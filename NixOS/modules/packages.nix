@@ -3,18 +3,24 @@
 {
   nixpkgs.config.allowUnfree = true;
 
+  fonts.fontconfig.enable = true;
+
+  fonts.packages = with pkgs; [
+    iosevka
+    noto-fonts
+    noto-fonts-cjk-sans    
+    noto-fonts-cjk-serif
+    noto-fonts-color-emoji
+  ];
+
   environment.systemPackages = with pkgs; [
-    neovim
-    emacs
     wget
     curl
     git
     gh
     google-chrome
     vlc
-    ghostty
     gcc
-    davinci-resolve
     fastfetch
     obs-studio
     discord
@@ -23,8 +29,8 @@
     obsidian
     gnumake
     papirus-icon-theme
-    noto-fonts-cjk-serif
-    noto-fonts-cjk-sans
-    blender
+    pavucontrol
+    kdePackages.kdenlive
+    unzip
   ];
 }

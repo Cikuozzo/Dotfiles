@@ -1,58 +1,28 @@
-
 { config, pkgs, ... }:
 
 let
   # dwm - Dynamic Window Manager
-  mydwm = pkgs.dwm.overrideAttrs (oldAttrs: rec {
-    src = pkgs.fetchgit {
-      url = "https://git.suckless.org/dwm";
-      rev = "HEAD";
-      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-    };
-    # Aggiungi patch qui se necessario:
-    # patches = [
-    #   ./dwm-alpha.diff
-    #   ./dwm-gaps.diff
-    # ];
+  mydwm = pkgs.dwm.overrideAttrs (oldAttrs: {
+    src = /etc/nixos/suckless/dwm;
   });
 
   # st - Simple Terminal
-  myst = pkgs.st.overrideAttrs (oldAttrs: rec {
-    src = pkgs.fetchgit {
-      url = "https://git.suckless.org/st";
-      rev = "HEAD";
-      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-    };
-    
-    # patches = [
-    #   ./st-scrollback.diff
-    # ];
+  myst = pkgs.st.overrideAttrs (oldAttrs: {
+    src = /etc/nixos/suckless/st;
   });
 
   # dmenu - Dynamic Menu
-  mydmenu = pkgs.dmenu.overrideAttrs (oldAttrs: rec {
-    src = pkgs.fetchgit {
-      url = "https://git.suckless.org/dmenu";
-      rev = "HEAD";
-      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-    };
-    # patches = [
-    #   ./dmenu-center.diff
-    # ];
+  mydmenu = pkgs.dmenu.overrideAttrs (oldAttrs: {
+    src = /etc/nixos/suckless/dmenu;
   });
 
   # slstatus - Status Monitor
-  myslstatus = pkgs.slstatus.overrideAttrs (oldAttrs: rec {
-    src = pkgs.fetchgit {
-      url = "https://git.suckless.org/slstatus";
-      rev = "HEAD";
-      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-    };
+  myslstatus = pkgs.slstatus.overrideAttrs (oldAttrs: {
+    src = /etc/nixos/suckless/slstatus;
   });
 
 in
 {
-  # Installa i pacchetti suckless personalizzati
   environment.systemPackages = with pkgs; [
     mydwm
     myst
@@ -60,9 +30,19 @@ in
     myslstatus
   ];
 
-  # Configura dwm come window manager
   services.xserver.windowManager.dwm = {
     enable = true;
     package = mydwm;
+  };
+
+  systemd.user.services.slstatus = {
+    description = "slstatus - status monitor for dwm";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${myslstatus}/bin/slstatus";
+      Restart = "on-failure";
+      RestartSec = 3;
+    };
   };
 }
