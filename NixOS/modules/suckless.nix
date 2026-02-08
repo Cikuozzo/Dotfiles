@@ -1,85 +1,78 @@
-{ config, lib, pkgs, ... }:
 
+{ config, pkgs, ... }:
+
+let
+  # dwm - Dynamic Window Manager
+  mydwm = pkgs.dwm.overrideAttrs (oldAttrs: rec {
+    src = pkgs.fetchgit {
+      url = "https://git.suckless.org/dwm";
+      rev = "HEAD";
+      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    };
+    # Oppure usa una directory locale:
+    # src = /path/to/your/dwm;
+    
+    # Aggiungi patch qui se necessario:
+    # patches = [
+    #   ./dwm-alpha.diff
+    #   ./dwm-gaps.diff
+    # ];
+  });
+
+  # st - Simple Terminal
+  myst = pkgs.st.overrideAttrs (oldAttrs: rec {
+    src = pkgs.fetchgit {
+      url = "https://git.suckless.org/st";
+      rev = "HEAD";
+      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    };
+    # Oppure usa una directory locale:
+    # src = /path/to/your/st;
+    
+    # patches = [
+    #   ./st-scrollback.diff
+    # ];
+  });
+
+  # dmenu - Dynamic Menu
+  mydmenu = pkgs.dmenu.overrideAttrs (oldAttrs: rec {
+    src = pkgs.fetchgit {
+      url = "https://git.suckless.org/dmenu";
+      rev = "HEAD";
+      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    };
+    # Oppure usa una directory locale:
+    # src = /path/to/your/dmenu;
+    
+    # patches = [
+    #   ./dmenu-center.diff
+    # ];
+  });
+
+  # slstatus - Status Monitor
+  myslstatus = pkgs.slstatus.overrideAttrs (oldAttrs: rec {
+    src = pkgs.fetchgit {
+      url = "https://git.suckless.org/slstatus";
+      rev = "HEAD";
+      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    };
+    # Oppure usa una directory locale:
+    # src = /path/to/your/slstatus;
+  });
+
+in
 {
-  # Configurazione per i programmi suckless
-  
-  services.xserver = {
-    enable = true;
-    
-    # Display Manager
-    displayManager = {
-      lightdm.enable = true;
-      defaultSession = "none+dwm";
-    };
-    
-    # Window Manager - dwm
-    windowManager.dwm = {
-      enable = true;
-      # Per usare dwm con patch personalizzate, decommenta e configura:
-      # package = pkgs.dwm.overrideAttrs (oldAttrs: {
-      #   src = /path/to/your/dwm;
-      # });
-    };
-  };
-  
-  # Pacchetti suckless
+  # Installa i pacchetti suckless personalizzati
   environment.systemPackages = with pkgs; [
-    # Window Manager
-    dwm
-    
-    # Menu dinamico
-    dmenu
-    
-    # Status bar
-    slstatus
-    
-    # Terminale
-    st
-    
-    # Utility aggiuntive utili con dwm
-    xorg.xsetroot     # Impostare il root window
-    xorg.xset         # Configurazione X
-    feh               # Wallpaper
-    scrot             # Screenshot
-    xclip             # Clipboard
-    
-    # Browser leggero
-    firefox
-    
-    # File manager leggero
-    pcmanfm
-    
-    # Visualizzatore immagini leggero
-    sxiv
-    
-    # Visualizzatore PDF
-    zathura
-    
-    # Editor di testo
-    # neovim
-    # vim
+    mydwm
+    myst
+    mydmenu
+    myslstatus
   ];
-  
-  # Servizi utili per dwm
-  # Compositor per trasparenze e animazioni (opzionale)
-  # services.picom = {
-  #   enable = true;
-  #   fade = true;
-  #   shadow = true;
-  #   fadeDelta = 4;
-  # };
-  
-  # Script di avvio per slstatus (opzionale)
-  # Puoi creare uno script in ~/.xinitrc o usare il display manager
-  
-  # Configurazione esempio per autostart di slstatus
-  # systemd.user.services.slstatus = {
-  #   description = "slstatus - status monitor for dwm";
-  #   wantedBy = [ "graphical-session.target" ];
-  #   partOf = [ "graphical-session.target" ];
-  #   serviceConfig = {
-  #     ExecStart = "${pkgs.slstatus}/bin/slstatus";
-  #     Restart = "on-failure";
-  #   };
-  # };
+
+  # Configura dwm come window manager
+  services.xserver.windowManager.dwm = {
+    enable = true;
+    package = mydwm;
+  };
 }
