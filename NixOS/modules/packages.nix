@@ -18,7 +18,6 @@
     curl
     git
     gh
-    google-chrome
     vlc
     gcc
     fastfetch
@@ -33,5 +32,7 @@
     kdePackages.kdenlive
     unzip
     btop
+    google-chrome
+
   ];
 }
