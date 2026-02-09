@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#Monitor
+/etc/xrandr-scripts/setup-monitors.sh
+xset s off
+xset -dpms
+xset s noblank
+xset dpms 0 0 0
+
+#Mouse
+xinput set-prop "pointer:Logitech G903 LS" "libinput Accel Speed" 0.5
+xinput set-prop "pointer:Logitech G903 LS" "libinput Accel Profile Enabled" 0, 1, 0
+xinput set-prop "pointer:Logitech G903 LS" "libinput Middle Emulation Enabled" 0

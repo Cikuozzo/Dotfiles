@@ -44,15 +44,6 @@
         LC_TIME = "it_IT.UTF-8";
     };
 
-    services.libinput = {
-        enable = true;
-        mouse = {
-            accelProfile = "flat";  # o "adaptive" per accelerazione
-                accelSpeed = "0";     # da -1 (lento) a 1 (veloce), 0 è neutro
-                middleEmulation = false;
-        };
-    };
-
 # Configure keymap in X11
     services.xserver.xkb = {
         layout = "us";

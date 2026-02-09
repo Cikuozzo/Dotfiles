@@ -3,18 +3,19 @@
 {
 
 # Enable X11 server
-services.xserver = {
-	enable = true;
-};
+    services.xserver = {
+        enable = true;
+    };
+
 
 # Xorg specific packages
-environment.systemPackages = with pkgs.xorg; [
+    environment.systemPackages = with pkgs.xorg; [
 
-	libX11.dev
-	libXft.dev
-	libXinerama.dev
-	xrandr
-
-];
+        libX11.dev
+        libXft.dev
+        libXinerama.dev
+        xrandr
+        xset
+    ];
 
 }
