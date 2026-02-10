@@ -14,6 +14,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    neovim
     wget
     curl
     git
@@ -33,6 +34,9 @@
     unzip
     btop
     google-chrome
-
+    xclip
+    ripgrep
+    kile        
+    texliveFull
   ];
 }
